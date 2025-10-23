@@ -1,0 +1,13 @@
+# Beefy Finance API GraphQL Schema
+
+########################################################
+# Scalars
+########################################################
+
+scalar HexString
+scalar DateTime
+scalar BigDecimal
+scalar BigInt
+scalar Float
+
+type Query {}

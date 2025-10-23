@@ -1,0 +1,53 @@
+input ApyBreakdownFilter {
+  days: Int!
+}
+type ApyBreakdown {
+  vaultApr: Float!
+  tradingFeesApr: Float
+  totalApr: Float!
+
+  vaultDailyYield: Float!
+  tradingFeesDailyYield: Float!
+  totalDailyYield: Float!
+}
+
+type TvlBreakdown {
+  vaultTvl: Float!
+  underlyingPoolTvl: Float!
+  shareOfPool: Float!
+}
+
+extend type ClassicVault {
+  price: BigDecimal!
+  lastHarvest: DateTime!
+  apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
+  tvl: TvlBreakdown!
+}
+
+extend type ClmVault {
+  price: BigDecimal!
+  lastHarvest: DateTime!
+  apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
+  tvl: TvlBreakdown!
+}
+
+extend type RewardPool {
+  price: BigDecimal!
+  lastHarvest: DateTime!
+  apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
+  tvl: TvlBreakdown!
+}
+
+extend type LiquidStakingVault {
+  price: BigDecimal!
+  lastHarvest: DateTime!
+  apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
+  tvl: TvlBreakdown!
+}
+
+extend type GovernanceVault {
+  price: BigDecimal!
+  lastHarvest: DateTime!
+  apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
+  tvl: TvlBreakdown!
+}

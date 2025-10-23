@@ -1,0 +1,108 @@
+
+########################################################
+# Common Types
+########################################################
+
+type BigDecimalDataPoint {
+    x: Float!
+    y: BigDecimal!
+}
+type BigIntDataPoint {
+    x: Float!
+    y: BigInt!
+}
+type FloatDataPoint {
+    x: Float!
+    y: Float!
+}
+
+enum TimeseriesInterval {
+    HOUR
+    DAY
+    WEEK
+    MONTH
+    YEAR
+}
+
+input TimeseriesOptions {
+    endTimestamp: Int
+    interval: TimeseriesInterval
+    startTimestamp: Int
+}
+
+########################################################
+# Tokens
+########################################################
+
+extend type TokenNative {
+    historicalState(options: TimeseriesOptions!): TokenNativeHistory!
+}
+
+type TokenNativeHistory {
+    price: [FloatDataPoint!]!
+}
+
+extend type TokenErc20 {
+    historicalState(options: TimeseriesOptions!): TokenErc20History!
+}
+
+type TokenErc20History {
+    price: [FloatDataPoint!]!
+}
+
+
+########################################################
+# Products
+########################################################
+
+extend type ClassicVault {
+    historicalState(options: TimeseriesOptions!): ClassicVaultHistory!
+}
+
+type ClassicVaultHistory {
+    price: [FloatDataPoint!]!
+    tvlUsd: [FloatDataPoint!]!
+    apy: [FloatDataPoint!]!
+}
+
+extend type ClmVault {
+    historicalState(options: TimeseriesOptions!): ClmVaultHistory!
+}
+
+type ClmVaultHistory {
+    price: [FloatDataPoint!]!
+    tvlUsd: [FloatDataPoint!]!
+    apy: [FloatDataPoint!]!
+}
+
+extend type RewardPool {
+    historicalState(options: TimeseriesOptions!): RewardPoolHistory!
+}
+
+type RewardPoolHistory {
+    price: [FloatDataPoint!]!
+    tvlUsd: [FloatDataPoint!]!
+    apy: [FloatDataPoint!]!
+}
+
+extend type LiquidStakingVault {
+    historicalState(options: TimeseriesOptions!): LiquidStakingVaultHistory!
+}
+
+type LiquidStakingVaultHistory {
+    price: [FloatDataPoint!]!
+    tvlUsd: [FloatDataPoint!]!
+    apy: [FloatDataPoint!]!
+}
+
+extend type GovernanceVault {
+    historicalState(options: TimeseriesOptions!): GovernanceVaultHistory!
+}
+
+type GovernanceVaultHistory {
+    price: [FloatDataPoint!]!
+    tvlUsd: [FloatDataPoint!]!
+    apy: [FloatDataPoint!]!
+    buyback: [FloatDataPoint!]!
+    totalBuyback: [FloatDataPoint!]!
+}
