@@ -1,0 +1,27 @@
+
+
+########################################################
+# Platforms
+########################################################
+
+type Platform {
+  "${slug}"
+  id: ID!
+  slug: String!
+  name: String!
+  description: String!
+  websiteUrl: String!
+  documentationUrl: String!
+  twitterUrl: String!
+}
+
+"""
+The type of product defines how to interact with the product.
+"""
+type PlatformProduct {
+  "${product.slug}"
+  id: ID!
+  platform: Platform!
+  slug: String!
+  name: String!
+}

@@ -1,0 +1,46 @@
+
+
+
+########################################################
+# Bundles
+########################################################
+
+"""
+A bundle is a collection of products that are related to each other.
+"""
+type ClmBundle {
+    "${slug}"
+    id: ID!
+    slug: String!
+    chain: Chain!
+
+    clmManager: ClmManager!
+    clmManagerRewardPool: RewardPool
+    vault: ClassicVault
+    vaultRewardPool: RewardPool
+}
+
+type GovernanceBundle {
+    "${slug}"
+    id: ID!
+    slug: String!
+    chain: Chain!
+
+    governanceVault: GovernanceVault!
+    compoundingVault: ClassicVault
+}
+
+input ClmBundleFilter {
+    chain: ChainFilter
+    slug_eq: String
+}
+input GovernanceBundleFilter {
+    chain: ChainFilter
+    slug_eq: String
+}
+extend type Query {
+    clmBundle(id: ID!): ClmBundle!
+    clmBundles(where: ClmBundleFilter): [ClmBundle!]!
+    governanceBundle(id: ID!): GovernanceBundle!
+    governanceBundles(where: GovernanceBundleFilter): [GovernanceBundle!]!
+}

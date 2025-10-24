@@ -1,0 +1,35 @@
+
+########################################################
+# Chains
+########################################################
+
+type Chain {
+    id: ID!
+    slug: String!
+    name: String!
+    networkId: Int!
+}
+
+enum ChainOrderBy {
+    id
+    slug
+    name
+    networkId
+}
+
+type PaginatedChain {
+    pageInfo: PageInfo!
+    items: [Chain!]!
+}
+
+input ChainFilter {
+    id_eq: ID
+    slug_eq: String
+    name_eq: String
+    networkId_eq: Int
+}
+
+extend type Query {
+    chain(id: ID!): Chain!
+    chains(where: ChainFilter = {}, orderBy: ChainOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedChain!
+}

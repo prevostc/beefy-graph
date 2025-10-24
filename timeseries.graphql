@@ -4,15 +4,15 @@
 ########################################################
 
 type BigDecimalDataPoint {
-    x: Float!
+    x: DateTime!
     y: BigDecimal!
 }
 type BigIntDataPoint {
-    x: Float!
+    x: DateTime!
     y: BigInt!
 }
 type FloatDataPoint {
-    x: Float!
+    x: DateTime!
     y: Float!
 }
 
@@ -28,6 +28,30 @@ input TimeseriesOptions {
     endTimestamp: Int
     interval: TimeseriesInterval
     startTimestamp: Int
+}
+
+########################################################
+# Protocol
+########################################################
+
+extend type Protocol {
+    historicalState(options: TimeseriesOptions!): ProtocolHistory!
+}
+
+type ProtocolHistory {
+    tvlUsd: [FloatDataPoint!]!
+}
+
+########################################################
+# Chains
+########################################################
+
+extend type Chain {
+    historicalState(options: TimeseriesOptions!): ChainHistory!
+}
+
+type ChainHistory {
+    tvlUsd: [FloatDataPoint!]!
 }
 
 ########################################################

@@ -1,0 +1,29 @@
+# Beefy Finance API GraphQL Schema
+
+########################################################
+# Scalars
+########################################################
+
+scalar HexString
+scalar DateTime
+scalar BigDecimal
+scalar BigInt
+scalar Float
+
+type Query {}
+
+########################################################
+# Pagination
+########################################################
+
+enum OrderDirection {
+    Asc
+    Desc
+}
+
+type PageInfo {
+    count: Int!
+    countTotal: Int!
+    limit: Int!
+    skip: Int!
+}

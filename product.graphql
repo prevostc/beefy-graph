@@ -1,0 +1,114 @@
+
+########################################################
+# Products
+########################################################
+
+type ProductStatusActive {
+    id: ID!
+}
+type ProductStatusEol {
+    id: ID!
+    retireReason: String!
+    retiredAt: DateTime!
+}
+type ProductStatusPaused {
+    id: ID!
+    pauseReason: String!
+    pausedAt: DateTime!
+}
+union ProductStatus = ProductStatusActive | ProductStatusEol | ProductStatusPaused
+
+type ClassicVault {
+  id: ID!
+  chain: Chain!
+  name: String!
+  status: ProductStatus!
+  shareToken: Token!
+  underlyingToken: Token!
+  underlyingProduct: PlatformProduct!
+
+  rewardPool: RewardPool
+
+  price: BigDecimal!
+}
+
+type ClmManager {
+  id: ID!
+  chain: Chain!
+  name: String!
+  status: ProductStatus!
+  shareToken: Token!
+  underlyingTokens: [Token!]!
+  underlyingProduct: PlatformProduct!
+
+  vault: ClassicVault
+  rewardPool: RewardPool
+
+  price: BigDecimal!
+}
+
+type RewardPool {
+  id: ID!
+  chain: Chain!
+  name: String!
+  status: ProductStatus!
+  shareToken: Token!
+  underlyingToken: Token!
+  rewardTokens: [Token!]!
+
+  price: BigDecimal!
+}
+
+"""Mostly beS"""
+type LstVault {
+  id: ID!
+  chain: Chain!
+  name: String!
+  status: ProductStatus!
+  shareToken: Token!
+  underlyingToken: Token!
+
+  price: BigDecimal!
+}
+
+type GovernanceVault {
+  id: ID!
+  chain: Chain!
+  name: String!
+  status: ProductStatus!
+  shareToken: Token!
+  underlyingToken: Token!
+
+  price: BigDecimal!
+}
+
+union Product = ClassicVault | ClmManager | RewardPool | LstVault | GovernanceVault
+
+
+enum ProductStatusEnum {
+    ACTIVE
+    EOL
+    PAUSED
+}
+input ProductFilter {
+    chain: ChainFilter
+    status: ProductStatusEnum
+    shareToken: TokenFilter
+    underlyingToken: TokenFilter
+}
+
+enum ProductOrderBy {
+    id
+    chain
+    status
+}
+type PaginatedProduct {
+    pageInfo: PageInfo!
+    items: [Product!]!
+}
+
+extend type Query {
+    product(id: ID!): Product!
+    products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedProduct!
+}
+

@@ -1,0 +1,58 @@
+
+########################################################
+# Tokens
+########################################################
+
+type TokenNative {
+    "${chain.id}:0x0000000000000000000000000000000000000000"
+    id: ID!
+    chain: Chain!
+    name: String!
+    symbol: String!
+    decimals: Int!
+}
+type TokenErc20 {
+    "${chain.id}:${contract.address}"
+    id: ID!
+
+    chain: Chain!
+    contract: Contract!
+
+    name: String!
+    symbol: String!
+    decimals: Int!
+    underlyingTokens: [Token!]
+}
+
+union Token = TokenNative | TokenErc20
+
+enum TokenOrderBy {
+    id
+    chain
+    name
+    symbol
+    decimals
+}
+type PaginatedToken {
+    pageInfo: PageInfo!
+    items: [Token!]!
+}
+
+input TokenFilter {
+    id_eq: ID
+    chain: ChainFilter
+    name_eq: String
+    symbol_eq: String
+    decimals_eq: Int
+}
+extend type Query {
+    token(id: ID!): Token!
+    tokenNative(chain: ChainFilter): TokenNative!
+    tokenErc20(chain: ChainFilter, address: HexString): TokenErc20!
+    tokens(where: TokenFilter): [Token!]!
+    tokensErc20(where: TokenErc20Filter): [TokenErc20!]!
+}
+
+extend type Chain {
+    tokens(where: TokenFilter = {}, orderBy: TokenOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedToken!
+}

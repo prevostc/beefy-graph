@@ -1,0 +1,20 @@
+
+########################################################
+# Last Harvest
+########################################################
+
+extend type ClassicVault {
+  lastHarvest: DateTime!
+}
+
+extend type ClmVault {
+  lastHarvest: DateTime!
+}
+
+extend type LiquidStakingVault {
+  lastHarvest: DateTime!
+}
+
+extend type GovernanceVault {
+  lastDistribution: DateTime!
+}

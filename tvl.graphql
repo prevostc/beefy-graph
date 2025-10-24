@@ -1,0 +1,38 @@
+########################################################
+# TVL
+########################################################
+
+extend type Beefy {
+  totalTvlUsd: Float!
+}
+
+extend type Chain {
+  totalTvlUsd: Float!
+}
+
+type ProductTvlBreakdown {
+  vaultTvlUsd: Float!
+  underlyingPoolTvlUsd: Float!
+  "The percentage of the total TVL that this product contributes to the underlying pool's total TVL. Number between 0.0 and 1.0"
+  shareOfPool: Float!
+}
+
+extend type ClassicVault {
+  tvl: ProductTvlBreakdown!
+}
+
+extend type ClmVault {
+  tvl: ProductTvlBreakdown!
+}
+
+extend type RewardPool {
+  tvl: ProductTvlBreakdown!
+}
+
+extend type LiquidStakingVault {
+  tvl: ProductTvlBreakdown!
+}
+
+extend type GovernanceVault {
+  tvl: ProductTvlBreakdown!
+}
