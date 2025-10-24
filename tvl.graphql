@@ -29,7 +29,7 @@ extend type RewardPool {
   tvl: ProductTvlBreakdown!
 }
 
-extend type LiquidStakingVault {
+extend type LstVault {
   tvl: ProductTvlBreakdown!
 }
 

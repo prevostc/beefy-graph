@@ -3,60 +3,39 @@
 # Products
 ########################################################
 
-type ProductStatusActive {
-    id: ID!
-}
-type ProductStatusEol {
-    id: ID!
-    retireReason: String!
-    retiredAt: DateTime!
-}
-type ProductStatusPaused {
-    id: ID!
-    pauseReason: String!
-    pausedAt: DateTime!
-}
-union ProductStatus = ProductStatusActive | ProductStatusEol | ProductStatusPaused
-
 type ClassicVault {
   id: ID!
   chain: Chain!
   name: String!
-  status: ProductStatus!
+  lifecycle: Lifecycle!
   shareToken: Token!
   underlyingToken: Token!
   underlyingProduct: PlatformProduct!
 
   rewardPool: RewardPool
-
-  price: BigDecimal!
 }
 
 type ClmManager {
   id: ID!
   chain: Chain!
   name: String!
-  status: ProductStatus!
+  lifecycle: Lifecycle!
   shareToken: Token!
   underlyingTokens: [Token!]!
   underlyingProduct: PlatformProduct!
 
   vault: ClassicVault
   rewardPool: RewardPool
-
-  price: BigDecimal!
 }
 
 type RewardPool {
   id: ID!
   chain: Chain!
   name: String!
-  status: ProductStatus!
+  lifecycle: Lifecycle!
   shareToken: Token!
   underlyingToken: Token!
   rewardTokens: [Token!]!
-
-  price: BigDecimal!
 }
 
 """Mostly beS"""
@@ -64,39 +43,37 @@ type LstVault {
   id: ID!
   chain: Chain!
   name: String!
-  status: ProductStatus!
+  lifecycle: Lifecycle!
   shareToken: Token!
   underlyingToken: Token!
-
-  price: BigDecimal!
 }
 
 type GovernanceVault {
   id: ID!
   chain: Chain!
   name: String!
-  status: ProductStatus!
+  lifecycle: Lifecycle!
   shareToken: Token!
   underlyingToken: Token!
-
-  price: BigDecimal!
 }
 
 union Product = ClassicVault | ClmManager | RewardPool | LstVault | GovernanceVault
 
 
-enum ProductStatusEnum {
-    ACTIVE
-    EOL
-    PAUSED
+enum ProductType {
+    CLASSIC_VAULT
+    CLM_MANAGER
+    REWARD_POOL
+    LST_VAULT
+    GOVERNANCE_VAULT
 }
 input ProductFilter {
     chain: ChainFilter
-    status: ProductStatusEnum
+    lifecycle: LifecycleType
+    type: ProductType
     shareToken: TokenFilter
     underlyingToken: TokenFilter
 }
-
 enum ProductOrderBy {
     id
     chain
@@ -106,9 +83,7 @@ type PaginatedProduct {
     pageInfo: PageInfo!
     items: [Product!]!
 }
-
 extend type Query {
     product(id: ID!): Product!
     products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedProduct!
 }
-

@@ -31,14 +31,14 @@ input TimeseriesOptions {
 }
 
 ########################################################
-# Protocol
+# Beefy
 ########################################################
 
-extend type Protocol {
-    historicalState(options: TimeseriesOptions!): ProtocolHistory!
+extend type Beefy {
+    historicalState(options: TimeseriesOptions!): BeefyHistory!
 }
 
-type ProtocolHistory {
+type BeefyHistory {
     tvlUsd: [FloatDataPoint!]!
 }
 
@@ -109,11 +109,11 @@ type RewardPoolHistory {
     apy: [FloatDataPoint!]!
 }
 
-extend type LiquidStakingVault {
-    historicalState(options: TimeseriesOptions!): LiquidStakingVaultHistory!
+extend type LstVault {
+    historicalState(options: TimeseriesOptions!): LstVaultHistory!
 }
 
-type LiquidStakingVaultHistory {
+type LstVaultHistory {
     price: [FloatDataPoint!]!
     tvlUsd: [FloatDataPoint!]!
     apy: [FloatDataPoint!]!

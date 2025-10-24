@@ -27,3 +27,28 @@ type PageInfo {
     limit: Int!
     skip: Int!
 }
+
+########################################################
+# Lifecycle
+########################################################
+
+type LifecycleActive {
+    id: ID!
+}
+type LifecycleEol {
+    id: ID!
+    retireReason: String!
+    retiredAt: DateTime!
+}
+type LifecyclePaused {
+    id: ID!
+    pauseReason: String!
+    pausedAt: DateTime!
+}
+union Lifecycle = LifecycleActive | LifecycleEol | LifecyclePaused
+
+enum LifecycleType {
+    Active
+    Eol
+    Paused
+}

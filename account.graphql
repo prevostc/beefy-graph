@@ -1,6 +1,6 @@
 
 ########################################################
-# Accounts and Contracts
+# Accounts 
 ########################################################
 
 """
@@ -11,6 +11,11 @@ type Account {
   "${address}"
   id: ID!
   address: HexString!
+
+  "True if the account ever interacted with the protocol"
+  isUser: Boolean! 
+  "True if the account has any open positions in the protocol"
+  isInvestor: Boolean! 
   
   "This account may have one contract per chain"
   contracts: [Contract!]!
@@ -27,6 +32,15 @@ type PaginatedAccount {
     pageInfo: PageInfo!
     items: [Account!]!
 }
+
+extend type Query {
+    account(id: ID!): Account!
+    accounts(where: AccountFilter = {}, orderBy: AccountOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedAccount!
+}
+
+########################################################
+# Contracts
+########################################################
 
 type Contract {
   "${chain.id}:${address}"
@@ -53,3 +67,7 @@ type PaginatedContract {
     items: [Contract!]!
 }
 
+extend type Query {
+    contract(id: ID!): Contract!
+    contracts(where: ContractFilter = {}, orderBy: ContractOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedContract!
+}

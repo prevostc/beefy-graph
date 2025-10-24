@@ -11,7 +11,7 @@ extend type ClmVault {
   lastHarvest: DateTime!
 }
 
-extend type LiquidStakingVault {
+extend type LstVault {
   lastHarvest: DateTime!
 }
 

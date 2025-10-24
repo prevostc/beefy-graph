@@ -28,7 +28,7 @@ extend type RewardPool {
   apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
 }
 
-extend type LiquidStakingVault {
+extend type LstVault {
   apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
 }
 

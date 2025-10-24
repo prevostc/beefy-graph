@@ -8,6 +8,7 @@ type Chain {
     slug: String!
     name: String!
     networkId: Int!
+    lifecycle: Lifecycle!
 }
 
 enum ChainOrderBy {
@@ -27,6 +28,7 @@ input ChainFilter {
     slug_eq: String
     name_eq: String
     networkId_eq: Int
+    lifecycle: LifecycleType
 }
 
 extend type Query {

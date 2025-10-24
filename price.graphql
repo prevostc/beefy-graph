@@ -28,7 +28,7 @@ extend type RewardPool {
   priceChange24h: Float!
 }
 
-extend type LiquidStakingVault {
+extend type LstVault {
   price: BigDecimal!
   priceChange24h: Float!
 }
