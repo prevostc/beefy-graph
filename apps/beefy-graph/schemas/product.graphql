@@ -3,49 +3,94 @@
 # Products
 ########################################################
 
+type LegacyBoost {
+  id: ID!
+
+  slug: String!
+  chain: Chain!
+  name: String!
+
+  vaultContract: Contract!
+  strategyContract: Contract!
+
+  underlyingProduct: Product!
+}
+
 type ClassicVault {
   id: ID!
+
+  slug: String!
   chain: Chain!
   name: String!
   lifecycle: Lifecycle!
-  shareToken: Token!
-  underlyingToken: Token!
+
+  vaultContract: Contract!
+  strategyContract: Contract!
+
+  shareToken: TokenErc20!
+  underlyingToken: TokenErc20!
   underlyingProduct: PlatformProduct!
 
   rewardPool: RewardPool
+
+  eolRewardPools: [RewardPool!]!
+  eolLegacyBoosts: [LegacyBoost!]!
 }
 
 type ClmManager {
   id: ID!
+
+  slug: String!
   chain: Chain!
   name: String!
   lifecycle: Lifecycle!
-  shareToken: Token!
-  underlyingTokens: [Token!]!
+
+  vaultContract: Contract!
+  strategyContract: Contract!
+
+  shareToken: TokenErc20!
+  underlyingTokens: [TokenErc20!]!
   underlyingProduct: PlatformProduct!
 
   vault: ClassicVault
   rewardPool: RewardPool
+
+  eolRewardPools: [RewardPool!]!
+  eolLegacyBoosts: [LegacyBoost!]!
 }
 
 type RewardPool {
   id: ID!
+
+  slug: String!
   chain: Chain!
   name: String!
   lifecycle: Lifecycle!
-  shareToken: Token!
-  underlyingToken: Token!
-  rewardTokens: [Token!]!
+
+  vaultContract: Contract!
+  strategyContract: Contract!
+
+  shareToken: TokenErc20!
+  underlyingToken: TokenErc20!
+  rewardTokens: [TokenErc20!]!
+  underlyingProduct: PlatformProduct!
 }
 
 """Mostly beS"""
 type LstVault {
   id: ID!
+
+  slug: String!
   chain: Chain!
   name: String!
   lifecycle: Lifecycle!
-  shareToken: Token!
-  underlyingToken: Token!
+  
+  vaultContract: Contract!
+  strategyContract: Contract!
+
+  shareToken: TokenErc20!
+  underlyingToken: TokenErc20!
+  underlyingProduct: PlatformProduct!
 }
 
 type GovVault {
@@ -53,14 +98,21 @@ type GovVault {
   chain: Chain!
   name: String!
   lifecycle: Lifecycle!
-  shareToken: Token!
-  underlyingToken: Token!
+
+  vaultContract: Contract!
+  strategyContract: Contract!
+
+  shareToken: TokenErc20!
+  underlyingToken: TokenErc20!
+
+  underlyingProduct: PlatformProduct!
 }
 
-union Product = ClassicVault | ClmManager | RewardPool | LstVault | GovVault
+union Product = LegacyBoost | ClassicVault | ClmManager | RewardPool | LstVault | GovVault
 
 
 enum ProductType {
+    LEGACY_BOOST
     CLASSIC_VAULT
     CLM_MANAGER
     REWARD_POOL

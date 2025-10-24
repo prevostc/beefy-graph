@@ -10,8 +10,6 @@ scalar BigDecimal
 scalar BigInt
 scalar Float
 
-type Query {}
-
 ########################################################
 # Pagination
 ########################################################
@@ -51,4 +49,49 @@ enum LifecycleType {
     Active
     Eol
     Paused
+}
+
+
+########################################################
+# Socials
+########################################################
+
+type Socials {
+    websiteURL: String
+    docsURL: String
+    githubURL: String
+    telegramURL: String
+    twitterURL: String
+    discordURL: String
+}
+
+########################################################
+# Timeseries
+########################################################
+
+type BigDecimalDataPoint {
+    x: DateTime!
+    y: BigDecimal!
+}
+type BigIntDataPoint {
+    x: DateTime!
+    y: BigInt!
+}
+type FloatDataPoint {
+    x: DateTime!
+    y: Float!
+}
+
+enum TimeseriesInterval {
+    HOUR
+    DAY
+    WEEK
+    MONTH
+    YEAR
+}
+
+input TimeseriesOptions {
+    startTimestamp: Int
+    endTimestamp: Int
+    interval: TimeseriesInterval
 }

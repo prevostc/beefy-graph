@@ -50,7 +50,7 @@ extend type Query {
     tokenNative(chain: ChainFilter): TokenNative!
     tokenErc20(chain: ChainFilter, address: HexString): TokenErc20!
     tokens(where: TokenFilter): [Token!]!
-    tokensErc20(where: TokenErc20Filter): [TokenErc20!]!
+    tokensErc20(where: TokenFilter): [TokenErc20!]!
 }
 
 extend type Chain {

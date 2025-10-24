@@ -1,0 +1,32 @@
+########################################################
+# Partners
+########################################################
+
+type Partner {
+    "${slug}"
+    id: ID!
+    slug: String!
+    name: String!
+
+    socials: Socials!
+}
+
+input PartnerFilter {
+    slug_eq: String
+}
+
+enum PartnerOrderBy {
+    id
+    slug
+    name
+}
+
+type PaginatedPartner {
+    pageInfo: PageInfo!
+    items: [Partner!]!
+}
+
+extend type Query {
+    partner(id: ID!): Partner!
+    partners(where: PartnerFilter = {}, orderBy: PartnerOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPartner!
+}

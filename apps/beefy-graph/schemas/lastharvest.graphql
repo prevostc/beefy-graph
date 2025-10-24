@@ -7,7 +7,7 @@ extend type ClassicVault {
   lastHarvest: DateTime!
 }
 
-extend type ClmVault {
+extend type ClmManager {
   lastHarvest: DateTime!
 }
 

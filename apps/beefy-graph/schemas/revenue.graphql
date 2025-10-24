@@ -1,0 +1,8 @@
+########################################################
+# Revenue
+########################################################
+
+extend type GovBundle {
+    dailyRevenueUSD: Float!
+    annualizedRevenueUSD: Float!
+}

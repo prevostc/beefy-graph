@@ -1,0 +1,179 @@
+########################################################
+# Promos
+########################################################
+
+enum PromoType {
+    BOOST
+    OFFCHAIN
+    POOL
+    AIRDROP
+}
+
+enum PromoStatus {
+    ACTIVE
+    PRESTAKE
+    INACTIVE
+}
+
+type PromoCampaign {
+    "${slug}"
+    id: ID!
+
+    slug: String!
+    title: String!
+    description: String!
+    learnMoreURL: String!
+    socials: Socials!
+
+    partners: [Partner!]!
+}
+
+
+"""
+Links a legacy boost to a promo campaign.
+"""
+type LegacyBoostPromo {
+    "${slug}:${version}"
+    id: ID!
+
+    slug: String!
+    version: Int!
+    title: String!
+    startTime: DateTime!
+    endTime: DateTime!
+    status: PromoStatus
+    campaign: PromoCampaign!
+
+    boost: LegacyBoost!
+}
+
+
+type RewardPoolPromo {
+    "${slug}:${version}"
+    id: ID!
+
+    slug: String!
+    version: Int!
+    title: String!
+    startTime: DateTime!
+    endTime: DateTime!
+    status: PromoStatus
+    campaign: PromoCampaign!
+
+    rewardPool: RewardPool!
+}
+
+type OffChainPromo {
+    "${slug}:${version}"
+    id: ID!
+
+    slug: String!
+    version: Int!
+    title: String!
+    startTime: DateTime!
+    endTime: DateTime!
+    status: PromoStatus
+    campaign: PromoCampaign!
+
+    products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedProduct!
+}
+
+type UnderlyingPoolPromo {
+    "${slug}:${version}"
+    id: ID!
+
+    slug: String!
+    version: Int!
+    title: String!
+    startTime: DateTime!
+    endTime: DateTime!
+    status: PromoStatus
+    campaign: PromoCampaign!
+
+    pool: Contract!
+    products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedProduct!
+}
+
+type AirdropPromo {
+    "${slug}"
+    id: ID!
+
+    slug: String!
+    title: String!
+    startTime: DateTime!
+    endTime: DateTime!
+    status: PromoStatus
+    campaign: PromoCampaign!
+
+    pool: Contract!
+    products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 100): PaginatedProduct!
+}
+
+union Promo = LegacyBoostPromo | RewardPoolPromo | OffChainPromo | UnderlyingPoolPromo | AirdropPromo
+
+
+input PromoCampaignFilter {
+    slug_eq: String
+}
+input PromoFilter {
+    slug_eq: String
+    version_eq: Int
+    status_eq: PromoStatus
+    campaign_eq: PromoCampaignFilter
+    type_eq: PromoType
+    startTime_gte: DateTime
+    startTime_lte: DateTime
+    endTime_gte: DateTime
+    endTime_lte: DateTime
+}
+
+enum PromoOrderBy {
+    id
+    slug
+    version
+    title
+    status
+    startTime
+    endTime
+}
+
+type PaginatedPromo {
+    pageInfo: PageInfo!
+    items: [Promo!]!
+}
+
+extend type Query {
+    promo(id: ID!): Promo!
+    promos(where: PromoFilter = {}, orderBy: PromoOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPromo!
+    promoCampaigns: [PromoCampaign!]!
+}
+
+extend type ClmManager {
+    "True if the product is pinned to the home page"
+    pinned: Boolean!
+
+    "Promos for the product"
+    promos(where: PromoFilter = {}, orderBy: PromoOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPromo!
+}
+extend type LstVault {
+    "True if the product is pinned to the home page"
+    pinned: Boolean!
+
+    "Promos for the product"
+    promos(where: PromoFilter = {}, orderBy: PromoOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPromo!
+}
+extend type ClassicVault {
+    "True if the product is pinned to the home page"
+    pinned: Boolean!
+
+    "Promos for the product"
+    promos(where: PromoFilter = {}, orderBy: PromoOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPromo!
+}
+
+extend type GovVault {
+    "True if the product is pinned to the home page"
+    pinned: Boolean!
+
+    "Promos for the product"
+    promos(where: PromoFilter = {}, orderBy: PromoOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPromo!
+}

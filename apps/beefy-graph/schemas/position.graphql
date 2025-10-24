@@ -1,0 +1,16 @@
+
+
+type AccountPosition {
+    "${product.id}:${account.id}"
+    id: ID!
+
+    account: Account!
+    chain: Chain!
+    product: Product!
+
+    shareQuantity: Float!
+    valueUSD: Float!
+
+    createdAtTimestamp: DateTime!
+    pnl: Float!
+}

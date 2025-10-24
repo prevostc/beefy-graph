@@ -10,9 +10,7 @@ type Platform {
   slug: String!
   name: String!
   description: String!
-  websiteUrl: String!
-  documentationUrl: String!
-  twitterUrl: String!
+  socials: Socials!
 }
 
 """
@@ -24,4 +22,23 @@ type PlatformProduct {
   platform: Platform!
   slug: String!
   name: String!
+}
+
+
+input PlatformFilter {
+  slug_eq: String
+}
+enum PlatformOrderBy {
+  id
+  slug
+  name
+}
+type PaginatedPlatform {
+  pageInfo: PageInfo!
+  items: [Platform!]!
+}
+
+extend type Query {
+  platform(id: ID!): Platform!
+  platforms(where: PlatformFilter = {}, orderBy: PlatformOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPlatform!
 }

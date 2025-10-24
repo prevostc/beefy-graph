@@ -1,45 +1,15 @@
 
-########################################################
-# Common Types
-########################################################
-
-type BigDecimalDataPoint {
-    x: DateTime!
-    y: BigDecimal!
-}
-type BigIntDataPoint {
-    x: DateTime!
-    y: BigInt!
-}
-type FloatDataPoint {
-    x: DateTime!
-    y: Float!
-}
-
-enum TimeseriesInterval {
-    HOUR
-    DAY
-    WEEK
-    MONTH
-    YEAR
-}
-
-input TimeseriesOptions {
-    endTimestamp: Int
-    interval: TimeseriesInterval
-    startTimestamp: Int
-}
 
 ########################################################
-# Beefy
+# Global to beefy
 ########################################################
 
-extend type Beefy {
+extend type Query {
     historicalState(options: TimeseriesOptions!): BeefyHistory!
 }
 
 type BeefyHistory {
-    tvlUsd: [FloatDataPoint!]!
+    tvlUSD: [FloatDataPoint!]!
 }
 
 ########################################################
@@ -51,7 +21,7 @@ extend type Chain {
 }
 
 type ChainHistory {
-    tvlUsd: [FloatDataPoint!]!
+    tvlUSD: [FloatDataPoint!]!
 }
 
 ########################################################
@@ -84,18 +54,18 @@ extend type ClassicVault {
 }
 
 type ClassicVaultHistory {
-    price: [FloatDataPoint!]!
-    tvlUsd: [FloatDataPoint!]!
+    sharePrice: [BigDecimalDataPoint!]!
+    tvlUSD: [FloatDataPoint!]!
     apy: [FloatDataPoint!]!
 }
 
-extend type ClmVault {
-    historicalState(options: TimeseriesOptions!): ClmVaultHistory!
+extend type ClmManager {
+    historicalState(options: TimeseriesOptions!): ClmManagerHistory!
 }
 
-type ClmVaultHistory {
-    price: [FloatDataPoint!]!
-    tvlUsd: [FloatDataPoint!]!
+type ClmManagerHistory {
+    sharePrice: [BigDecimalDataPoint!]!
+    tvlUSD: [FloatDataPoint!]!
     apy: [FloatDataPoint!]!
 }
 
@@ -104,8 +74,8 @@ extend type RewardPool {
 }
 
 type RewardPoolHistory {
-    price: [FloatDataPoint!]!
-    tvlUsd: [FloatDataPoint!]!
+    sharePrice: [BigDecimalDataPoint!]!
+    tvlUSD: [FloatDataPoint!]!
     apy: [FloatDataPoint!]!
 }
 
@@ -114,8 +84,8 @@ extend type LstVault {
 }
 
 type LstVaultHistory {
-    price: [FloatDataPoint!]!
-    tvlUsd: [FloatDataPoint!]!
+    sharePrice: [BigDecimalDataPoint!]!
+    tvlUSD: [FloatDataPoint!]!
     apy: [FloatDataPoint!]!
 }
 
@@ -124,8 +94,8 @@ extend type GovVault {
 }
 
 type GovVaultHistory {
-    price: [FloatDataPoint!]!
-    tvlUsd: [FloatDataPoint!]!
+    sharePrice: [BigDecimalDataPoint!]!
+    tvlUSD: [FloatDataPoint!]!
     apy: [FloatDataPoint!]!
     buyback: [FloatDataPoint!]!
     totalBuyback: [FloatDataPoint!]!

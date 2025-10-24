@@ -2,17 +2,17 @@
 # TVL
 ########################################################
 
-extend type Beefy {
-  totalTvlUsd: Float!
+type Query {
+  totalTvlUSD: Float!
 }
 
 extend type Chain {
-  totalTvlUsd: Float!
+  totalTvlUSD: Float!
 }
 
 type ProductTvlBreakdown {
-  vaultTvlUsd: Float!
-  underlyingPoolTvlUsd: Float!
+  vaultTvlUSD: Float!
+  underlyingPoolTvlUSD: Float!
   "The percentage of the total TVL that this product contributes to the underlying pool's total TVL. Number between 0.0 and 1.0"
   shareOfPool: Float!
 }
@@ -21,7 +21,7 @@ extend type ClassicVault {
   tvl: ProductTvlBreakdown!
 }
 
-extend type ClmVault {
+extend type ClmManager {
   tvl: ProductTvlBreakdown!
 }
 

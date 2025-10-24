@@ -1,0 +1,50 @@
+
+########################################################
+# Token Prices
+########################################################
+
+extend type TokenErc20 {
+  price: FloatDataPoint!
+  priceChange24h: Float!
+}
+
+extend type TokenNative {
+  price: Float!
+  priceChange24h: Float!
+}
+
+########################################################
+# Product Prices
+########################################################
+
+extend type ClassicVault {
+  sharePrice: BigDecimal!
+}
+
+extend type ClmManager {
+  sharePrice: BigDecimal!
+}
+
+extend type RewardPool {
+  sharePrice: BigDecimal!
+}
+
+extend type LstVault {
+  sharePrice: BigDecimal!
+}
+
+extend type GovVault {
+  sharePrice: BigDecimal!
+}
+
+########################################################
+# Bundle Prices
+########################################################
+
+extend type ClmBundle {
+  sharePrice: BigDecimal!
+}
+
+extend type GovBundle {
+  sharePrice: BigDecimal!
+}

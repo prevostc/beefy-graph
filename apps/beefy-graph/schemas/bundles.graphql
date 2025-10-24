@@ -18,6 +18,9 @@ type ClmBundle {
     clmManagerRewardPool: RewardPool
     vault: ClassicVault
     vaultRewardPool: RewardPool
+
+    eolLegacyBoosts: [LegacyBoost!]!
+    eolVaultRewardPools: [RewardPool!]!
 }
 
 type GovBundle {
@@ -28,9 +31,6 @@ type GovBundle {
 
     govVault: GovVault!
     compoundingVault: ClassicVault
-
-    dailyRevenueUsd: Float!
-    annualizedRevenueUsd: Float!
 }
 
 input ClmBundleFilter {

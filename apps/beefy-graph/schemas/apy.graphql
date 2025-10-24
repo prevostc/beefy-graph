@@ -20,7 +20,7 @@ extend type ClassicVault {
   apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
 }
 
-extend type ClmVault {
+extend type ClmManager {
   apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
 }
 
@@ -33,5 +33,18 @@ extend type LstVault {
 }
 
 extend type GovVault {
+  apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
+}
+
+
+########################################################
+# For Bundles
+########################################################
+
+extend type ClmBundle {
+  apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
+}
+
+extend type GovBundle {
   apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
 }

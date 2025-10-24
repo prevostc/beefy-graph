@@ -1,0 +1,106 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    ".env"
+  ],
+  "tasks": {
+    "codegen": {
+      "dependsOn": [],
+      "outputs": [
+        "**/codegen/**"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "dist/**",
+        "build/**",
+        "out/**"
+      ]
+    },
+    "build:api": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "dist/**",
+        "build/**",
+        "out/**"
+      ]
+    },
+    "build:docker": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
+    "format": {
+      "cache": false,
+      "outputs": []
+    },
+    "format:safe": {
+      "cache": false,
+      "outputs": []
+    },
+    "test": {
+      "outputs": [],
+      "dependsOn": [
+        "^build",
+        "^test"
+      ]
+    },
+    "test:lint": {
+      "outputs": [],
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "test:ts": {
+      "outputs": [],
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "test:unit": {
+      "outputs": [],
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "dependencies:update": {
+      "outputs": []
+    },
+    "clean": {
+      "cache": false,
+      "outputs": []
+    },
+    "clean:deps": {
+      "cache": false,
+      "outputs": []
+    },
+    "clean:prod": {
+      "cache": false,
+      "outputs": []
+    },
+    "db:migrate": {
+      "cache": false,
+      "outputs": [],
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "test:unused-exports": {
+      "outputs": [],
+      "dependsOn": []
+    }
+  }
+}

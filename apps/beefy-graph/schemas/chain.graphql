@@ -31,7 +31,7 @@ input ChainFilter {
     lifecycle: LifecycleType
 }
 
-extend type Query {
+type Query {
     chain(id: ID!): Chain!
     chains(where: ChainFilter = {}, orderBy: ChainOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedChain!
 }
