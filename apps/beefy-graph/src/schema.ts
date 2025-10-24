@@ -10,14 +10,13 @@ const gqlFiles = [
     'common.graphql',
 
     'chain.graphql',
-    'account.graphql',
+    'user.graphql',
     'token.graphql',
 
     'partner.graphql',
     'platform.graphql',
 
     'product.graphql',
-    'bundles.graphql',
     'promo.graphql',
 
     'position.graphql',

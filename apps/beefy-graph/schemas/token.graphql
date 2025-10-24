@@ -47,10 +47,7 @@ input TokenFilter {
 }
 extend type Query {
     token(id: ID!): Token!
-    tokenNative(chain: ChainFilter): TokenNative!
-    tokenErc20(chain: ChainFilter, address: HexString): TokenErc20!
-    tokens(where: TokenFilter): [Token!]!
-    tokensErc20(where: TokenFilter): [TokenErc20!]!
+    tokens(where: TokenFilter): PaginatedToken!
 }
 
 extend type Chain {

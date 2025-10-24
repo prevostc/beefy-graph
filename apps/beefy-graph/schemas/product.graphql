@@ -108,7 +108,43 @@ type GovVault {
   underlyingProduct: PlatformProduct!
 }
 
-union Product = LegacyBoost | ClassicVault | ClmManager | RewardPool | LstVault | GovVault
+
+
+
+########################################################
+# Bundles
+########################################################
+
+"""
+A bundle is a collection of products that are related to each other.
+"""
+type ClmBundle {
+    "${slug}"
+    id: ID!
+    slug: String!
+    chain: Chain!
+
+    clmManager: ClmManager!
+    clmManagerRewardPool: RewardPool
+    vault: ClassicVault
+    vaultRewardPool: RewardPool
+
+    eolLegacyBoosts: [LegacyBoost!]!
+    eolVaultRewardPools: [RewardPool!]!
+}
+
+type GovBundle {
+    "${slug}"
+    id: ID!
+    slug: String!
+    chain: Chain!
+
+    govVault: GovVault!
+    compoundingVault: ClassicVault
+}
+
+
+union Product = LegacyBoost | ClassicVault | ClmManager | RewardPool | LstVault | GovVault | ClmBundle | GovBundle
 
 
 enum ProductType {
@@ -118,7 +154,10 @@ enum ProductType {
     REWARD_POOL
     LST_VAULT
     GOV_VAULT
+    CLM_BUNDLE
+    GOV_BUNDLE
 }
+
 input ProductFilter {
     chain: ChainFilter
     lifecycle: LifecycleType

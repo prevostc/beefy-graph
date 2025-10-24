@@ -1,10 +1,10 @@
 
 
-type AccountPosition {
-    "${product.id}:${account.id}"
+type UserPosition {
+    "${product.id}:${user.id}"
     id: ID!
 
-    account: Account!
+    user: User!
     chain: Chain!
     product: Product!
 

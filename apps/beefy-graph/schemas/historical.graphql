@@ -4,7 +4,7 @@
 # Global to beefy
 ########################################################
 
-extend type Query {
+extend type Global {
     historicalState(options: TimeseriesOptions!): BeefyHistory!
 }
 

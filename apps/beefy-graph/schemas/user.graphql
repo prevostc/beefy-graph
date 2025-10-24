@@ -1,0 +1,49 @@
+
+########################################################
+# Users 
+########################################################
+
+"""
+An user is a unique address, regardless of the chain. 
+It may be a contract or an externally owned user (EOA) or both (EOA with eip7702 code set).
+"""
+type User {
+  "${address}"
+  id: ID!
+  address: HexString!
+
+  "This user may have one contract per chain"
+  contracts: [Contract!]!
+}
+
+input UserFilter {
+    address_eq: HexString
+}
+enum UserOrderBy {
+    id
+    address
+}
+type PaginatedUser {
+    pageInfo: PageInfo!
+    items: [User!]!
+}
+
+extend type Query {
+    user(id: ID!): User!
+    users(where: UserFilter = {}, orderBy: UserOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedUser!
+}
+
+########################################################
+# Contracts
+########################################################
+
+type Contract {
+  "${chain.id}:${address}"
+  id: ID!
+  chain: Chain!
+  address: HexString!
+
+  createdAtTimestamp: DateTime!
+  createdAtBlock: Int!
+}
+

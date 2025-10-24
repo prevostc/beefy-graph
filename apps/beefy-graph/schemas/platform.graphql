@@ -22,6 +22,8 @@ type PlatformProduct {
   platform: Platform!
   slug: String!
   name: String!
+
+  products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedProduct!
 }
 
 

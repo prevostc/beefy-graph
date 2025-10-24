@@ -2,7 +2,8 @@
 # TVL
 ########################################################
 
-type Query {
+type Global {
+  "The total TVL of the beefy protocol in USD"
   totalTvlUSD: Float!
 }
 

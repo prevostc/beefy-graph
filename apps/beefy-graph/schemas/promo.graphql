@@ -109,7 +109,22 @@ type AirdropPromo {
     products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 100): PaginatedProduct!
 }
 
-union Promo = LegacyBoostPromo | RewardPoolPromo | OffChainPromo | UnderlyingPoolPromo | AirdropPromo
+type PointsPromo {
+    "${slug}:${version}"
+    id: ID!
+
+    slug: String!
+    version: Int!
+    title: String!
+    startTime: DateTime!
+    endTime: DateTime!
+    status: PromoStatus
+    campaign: PromoCampaign!
+
+    products(where: ProductFilter = {}, orderBy: ProductOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 100): PaginatedProduct!
+}
+
+union Promo = LegacyBoostPromo | RewardPoolPromo | OffChainPromo | UnderlyingPoolPromo | AirdropPromo | PointsPromo
 
 
 input PromoCampaignFilter {
@@ -142,11 +157,7 @@ type PaginatedPromo {
     items: [Promo!]!
 }
 
-extend type Query {
-    promo(id: ID!): Promo!
-    promos(where: PromoFilter = {}, orderBy: PromoOrderBy = id, orderDirection: OrderDirection = Asc, first: Int = 100, skip: Int = 0): PaginatedPromo!
-    promoCampaigns: [PromoCampaign!]!
-}
+
 
 extend type ClmManager {
     "True if the product is pinned to the home page"
