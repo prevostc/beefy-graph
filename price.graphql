@@ -33,7 +33,7 @@ extend type LstVault {
   priceChange24h: Float!
 }
 
-extend type GovernanceVault {
+extend type GovVault {
   price: BigDecimal!
   priceChange24h: Float!
 }

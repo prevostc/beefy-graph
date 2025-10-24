@@ -20,13 +20,13 @@ type ClmBundle {
     vaultRewardPool: RewardPool
 }
 
-type GovernanceBundle {
+type GovBundle {
     "${slug}"
     id: ID!
     slug: String!
     chain: Chain!
 
-    governanceVault: GovernanceVault!
+    govVault: GovVault!
     compoundingVault: ClassicVault
 
     dailyRevenueUsd: Float!
@@ -37,13 +37,13 @@ input ClmBundleFilter {
     chain: ChainFilter
     slug_eq: String
 }
-input GovernanceBundleFilter {
+input GovBundleFilter {
     chain: ChainFilter
     slug_eq: String
 }
 extend type Query {
     clmBundle(id: ID!): ClmBundle!
     clmBundles(where: ClmBundleFilter): [ClmBundle!]!
-    governanceBundle(id: ID!): GovernanceBundle!
-    governanceBundles(where: GovernanceBundleFilter): [GovernanceBundle!]!
+    govBundle(id: ID!): GovBundle!
+    govBundles(where: GovBundleFilter): [GovBundle!]!
 }

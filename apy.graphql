@@ -32,6 +32,6 @@ extend type LstVault {
   apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
 }
 
-extend type GovernanceVault {
+extend type GovVault {
   apy(breakdown: ApyBreakdownFilter): ApyBreakdown!
 }

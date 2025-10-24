@@ -33,6 +33,6 @@ extend type LstVault {
   tvl: ProductTvlBreakdown!
 }
 
-extend type GovernanceVault {
+extend type GovVault {
   tvl: ProductTvlBreakdown!
 }

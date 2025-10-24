@@ -48,7 +48,7 @@ type LstVault {
   underlyingToken: Token!
 }
 
-type GovernanceVault {
+type GovVault {
   id: ID!
   chain: Chain!
   name: String!
@@ -57,7 +57,7 @@ type GovernanceVault {
   underlyingToken: Token!
 }
 
-union Product = ClassicVault | ClmManager | RewardPool | LstVault | GovernanceVault
+union Product = ClassicVault | ClmManager | RewardPool | LstVault | GovVault
 
 
 enum ProductType {
@@ -65,7 +65,7 @@ enum ProductType {
     CLM_MANAGER
     REWARD_POOL
     LST_VAULT
-    GOVERNANCE_VAULT
+    GOV_VAULT
 }
 input ProductFilter {
     chain: ChainFilter

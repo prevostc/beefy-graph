@@ -119,11 +119,11 @@ type LstVaultHistory {
     apy: [FloatDataPoint!]!
 }
 
-extend type GovernanceVault {
-    historicalState(options: TimeseriesOptions!): GovernanceVaultHistory!
+extend type GovVault {
+    historicalState(options: TimeseriesOptions!): GovVaultHistory!
 }
 
-type GovernanceVaultHistory {
+type GovVaultHistory {
     price: [FloatDataPoint!]!
     tvlUsd: [FloatDataPoint!]!
     apy: [FloatDataPoint!]!
