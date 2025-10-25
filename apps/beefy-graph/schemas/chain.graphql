@@ -18,19 +18,24 @@ extend type Query {
 # Chains
 ########################################################
 
+enum ChainStatus {
+    Active
+    Eol
+}
+
 type Chain {
     id: ID!
+
     slug: String!
     name: String!
     networkId: Int!
-    lifecycle: Lifecycle!
+
+    status: ChainStatus!
 }
 
 enum ChainOrderBy {
     id
     slug
-    name
-    networkId
 }
 
 type PaginatedChain {
@@ -43,7 +48,7 @@ input ChainFilter {
     slug_eq: String
     name_eq: String
     networkId_eq: Int
-    lifecycle: LifecycleType
+    status_eq: ChainStatus
 }
 
 type Query {

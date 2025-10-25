@@ -1,4 +1,24 @@
 
+
+enum ProductStatus {
+    Active
+    Eol
+    Paused
+}
+
+type ProductLifecycle {
+    status: ProductStatus!
+    retireReason: String
+    retiredAt: DateTime
+    pauseReason: String
+    pausedAt: DateTime
+}
+
+input ProductLifecycleFilter {
+    status_eq: ProductStatus
+}
+
+
 ########################################################
 # Products
 ########################################################
@@ -22,7 +42,7 @@ type ClassicVault {
   slug: String!
   chain: Chain!
   name: String!
-  lifecycle: Lifecycle!
+  lifecycle: ProductLifecycle!
 
   vaultContract: Contract!
   strategyContract: Contract!
@@ -43,7 +63,7 @@ type ClmManager {
   slug: String!
   chain: Chain!
   name: String!
-  lifecycle: Lifecycle!
+  lifecycle: ProductLifecycle!
 
   vaultContract: Contract!
   strategyContract: Contract!
@@ -65,7 +85,7 @@ type RewardPool {
   slug: String!
   chain: Chain!
   name: String!
-  lifecycle: Lifecycle!
+  lifecycle: ProductLifecycle!
 
   vaultContract: Contract!
   strategyContract: Contract!
@@ -83,7 +103,7 @@ type LstVault {
   slug: String!
   chain: Chain!
   name: String!
-  lifecycle: Lifecycle!
+  lifecycle: ProductLifecycle!
   
   vaultContract: Contract!
   strategyContract: Contract!
@@ -97,7 +117,7 @@ type GovVault {
   id: ID!
   chain: Chain!
   name: String!
-  lifecycle: Lifecycle!
+  lifecycle: ProductLifecycle!
 
   vaultContract: Contract!
   strategyContract: Contract!
@@ -160,7 +180,7 @@ enum ProductType {
 
 input ProductFilter {
     chain: ChainFilter
-    lifecycle: LifecycleType
+    lifecycle: ProductLifecycleFilter
     type: ProductType
     shareToken: TokenFilter
     underlyingToken: TokenFilter
