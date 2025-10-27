@@ -2,7 +2,8 @@
 # Revenue
 ########################################################
 
-extend type GovBundle {
-    dailyRevenueUSD: Float!
-    annualizedRevenueUSD: Float!
+extend type Global {
+    weeklyRevenueUSD: Float!
+    monthlyRevenueUSD: Float!
+    yearlyRevenueUSD: Float!
 }
