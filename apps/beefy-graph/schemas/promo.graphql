@@ -3,10 +3,12 @@
 ########################################################
 
 enum PromoType {
-    BOOST
+    LEGACY_BOOST
+    REWARD_POOL
+    UNDERLYING_POOL
     OFFCHAIN
-    POOL
     AIRDROP
+    POINTS
 }
 
 enum PromoStatus {

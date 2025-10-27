@@ -602,7 +602,7 @@ export type PointsPromoProductsArgs = {
   where?: InputMaybe<ProductFilter>;
 };
 
-export type Product = ClassicVault | ClmBundle | ClmManager | GovBundle | GovVault | LegacyBoost | LstVault | RewardPool;
+export type Product = ClassicVault | ClmBundle | ClmManager | GovBundle | GovVault | LstVault;
 
 export type ProductFilter = {
   chain?: InputMaybe<ChainFilter>;
@@ -651,9 +651,7 @@ export enum ProductType {
   ClmManager = 'CLM_MANAGER',
   GovBundle = 'GOV_BUNDLE',
   GovVault = 'GOV_VAULT',
-  LegacyBoost = 'LEGACY_BOOST',
-  LstVault = 'LST_VAULT',
-  RewardPool = 'REWARD_POOL'
+  LstVault = 'LST_VAULT'
 }
 
 export type Promo = AirdropPromo | LegacyBoostPromo | OffChainPromo | PointsPromo | RewardPoolPromo | UnderlyingPoolPromo;
@@ -704,9 +702,11 @@ export enum PromoStatus {
 
 export enum PromoType {
   Airdrop = 'AIRDROP',
-  Boost = 'BOOST',
+  LegacyBoost = 'LEGACY_BOOST',
   Offchain = 'OFFCHAIN',
-  Pool = 'POOL'
+  Points = 'POINTS',
+  RewardPool = 'REWARD_POOL',
+  UnderlyingPool = 'UNDERLYING_POOL'
 }
 
 export type Query = {
@@ -1082,9 +1082,7 @@ export type ResolversUnionTypes<_RefType extends Record<string, unknown>> = {
     | ( Omit<ClmManager, 'chain' | 'eolLegacyBoosts' | 'eolRewardPools' | 'promos' | 'rewardPool' | 'shareToken' | 'strategyContract' | 'underlyingProduct' | 'underlyingTokens' | 'vault' | 'vaultContract'> & { chain: _RefType['Chain'], eolLegacyBoosts: Array<_RefType['LegacyBoost']>, eolRewardPools: Array<_RefType['RewardPool']>, promos: _RefType['PaginatedPromo'], rewardPool?: Maybe<_RefType['RewardPool']>, shareToken: _RefType['TokenErc20'], strategyContract: _RefType['Contract'], underlyingProduct: _RefType['PlatformProduct'], underlyingTokens: Array<_RefType['TokenErc20']>, vault?: Maybe<_RefType['ClassicVault']>, vaultContract: _RefType['Contract'] } )
     | ( Omit<GovBundle, 'chain' | 'compoundingVault' | 'govVault'> & { chain: _RefType['Chain'], compoundingVault?: Maybe<_RefType['ClassicVault']>, govVault: _RefType['GovVault'] } )
     | ( Omit<GovVault, 'chain' | 'promos' | 'shareToken' | 'strategyContract' | 'underlyingProduct' | 'underlyingToken' | 'vaultContract'> & { chain: _RefType['Chain'], promos: _RefType['PaginatedPromo'], shareToken: _RefType['TokenErc20'], strategyContract: _RefType['Contract'], underlyingProduct: _RefType['PlatformProduct'], underlyingToken: _RefType['TokenErc20'], vaultContract: _RefType['Contract'] } )
-    | ( Omit<LegacyBoost, 'chain' | 'strategyContract' | 'underlyingProduct' | 'vaultContract'> & { chain: _RefType['Chain'], strategyContract: _RefType['Contract'], underlyingProduct: _RefType['Product'], vaultContract: _RefType['Contract'] } )
     | ( Omit<LstVault, 'chain' | 'promos' | 'shareToken' | 'strategyContract' | 'underlyingProduct' | 'underlyingToken' | 'vaultContract'> & { chain: _RefType['Chain'], promos: _RefType['PaginatedPromo'], shareToken: _RefType['TokenErc20'], strategyContract: _RefType['Contract'], underlyingProduct: _RefType['PlatformProduct'], underlyingToken: _RefType['TokenErc20'], vaultContract: _RefType['Contract'] } )
-    | ( Omit<RewardPool, 'chain' | 'rewardTokens' | 'shareToken' | 'strategyContract' | 'underlyingProduct' | 'underlyingToken' | 'vaultContract'> & { chain: _RefType['Chain'], rewardTokens: Array<_RefType['TokenErc20']>, shareToken: _RefType['TokenErc20'], strategyContract: _RefType['Contract'], underlyingProduct: _RefType['PlatformProduct'], underlyingToken: _RefType['TokenErc20'], vaultContract: _RefType['Contract'] } )
   ;
   Promo:
     | ( Omit<AirdropPromo, 'pool' | 'products'> & { pool: _RefType['Contract'], products: _RefType['PaginatedProduct'] } )
@@ -1491,7 +1489,6 @@ export type LegacyBoostResolvers<ContextType = any, ParentType extends Resolvers
   strategyContract?: Resolver<ResolversTypes['Contract'], ParentType, ContextType>;
   underlyingProduct?: Resolver<ResolversTypes['Product'], ParentType, ContextType>;
   vaultContract?: Resolver<ResolversTypes['Contract'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type LegacyBoostPromoResolvers<ContextType = any, ParentType extends ResolversParentTypes['LegacyBoostPromo'] = ResolversParentTypes['LegacyBoostPromo']> = {
@@ -1626,7 +1623,7 @@ export type PointsPromoResolvers<ContextType = any, ParentType extends Resolvers
 };
 
 export type ProductResolvers<ContextType = any, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = {
-  __resolveType: TypeResolveFn<'ClassicVault' | 'ClmBundle' | 'ClmManager' | 'GovBundle' | 'GovVault' | 'LegacyBoost' | 'LstVault' | 'RewardPool', ParentType, ContextType>;
+  __resolveType: TypeResolveFn<'ClassicVault' | 'ClmBundle' | 'ClmManager' | 'GovBundle' | 'GovVault' | 'LstVault', ParentType, ContextType>;
 };
 
 export type ProductLifecycleResolvers<ContextType = any, ParentType extends ResolversParentTypes['ProductLifecycle'] = ResolversParentTypes['ProductLifecycle']> = {
@@ -1689,7 +1686,6 @@ export type RewardPoolResolvers<ContextType = any, ParentType extends ResolversP
   underlyingProduct?: Resolver<ResolversTypes['PlatformProduct'], ParentType, ContextType>;
   underlyingToken?: Resolver<ResolversTypes['TokenErc20'], ParentType, ContextType>;
   vaultContract?: Resolver<ResolversTypes['Contract'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type RewardPoolHistoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['RewardPoolHistory'] = ResolversParentTypes['RewardPoolHistory']> = {
