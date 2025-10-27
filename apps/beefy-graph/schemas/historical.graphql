@@ -5,10 +5,10 @@
 ########################################################
 
 extend type Global {
-    historicalState(options: TimeseriesOptions!): BeefyHistory!
+    historicalState(options: TimeseriesOptions!): GlobalHistory!
 }
 
-type BeefyHistory {
+type GlobalHistory {
     tvlUSD: [FloatDataPoint!]!
 }
 

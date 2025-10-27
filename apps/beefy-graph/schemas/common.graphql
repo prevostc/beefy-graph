@@ -9,6 +9,7 @@ scalar DateTime
 scalar BigDecimal
 scalar BigInt
 scalar Float
+scalar URL
 
 ########################################################
 # Pagination
@@ -31,12 +32,12 @@ type PageInfo {
 ########################################################
 
 type Socials {
-    websiteURL: String
-    docsURL: String
-    githubURL: String
-    telegramURL: String
-    twitterURL: String
-    discordURL: String
+    websiteURL: URL
+    docsURL: URL
+    githubURL: URL
+    telegramURL: URL
+    twitterURL: URL
+    discordURL: URL
 }
 
 ########################################################

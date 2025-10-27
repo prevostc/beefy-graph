@@ -1,3 +1,4 @@
+
 ########################################################
 # Revenue
 ########################################################
@@ -14,4 +15,15 @@ extend type Global {
     # Revenue
     weeklyRevenueUSD: Float!
     monthlyRevenueUSD: Float!
+}
+
+extend type GlobalHistory {
+    weeklyMooBifiBuybackAmount: [FloatDataPoint!]!
+    weeklyMooBifiBuybackUSD: [FloatDataPoint!]!
+
+    weeklyYieldUSD: [FloatDataPoint!]!
+    monthlyYieldUSD: [FloatDataPoint!]!
+
+    weeklyRevenueUSD: [FloatDataPoint!]!
+    monthlyRevenueUSD: [FloatDataPoint!]!
 }

@@ -2,6 +2,8 @@ import { loadSchemaSync } from '@graphql-tools/load';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { resolvers } from './resolvers';
+import { addResolversToSchema } from '@graphql-tools/schema'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,6 +33,9 @@ const gqlFiles = [
 ].map(file => path.join(schemaDir, file));
 
 
-export const schema = loadSchemaSync(gqlFiles, {
-    loaders: [new GraphQLFileLoader()],
+export const schema = addResolversToSchema({
+    schema: loadSchemaSync(gqlFiles, {
+        loaders: [new GraphQLFileLoader()],
+    }),
+    resolvers,
 })

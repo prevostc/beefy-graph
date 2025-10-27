@@ -1,11 +1,23 @@
 ########################################################
-# TVL
+# Beefy
 ########################################################
 
-extend type Global {
+"""
+The global stats for the beefy protocol.
+"""
+type Global {
   "The total TVL of the beefy protocol in USD"
   totalTvlUSD: Float!
 }
+
+extend type Query {
+    global: Global!
+}
+
+########################################################
+# TVL
+########################################################
+
 
 extend type Chain {
   totalTvlUSD: Float!
