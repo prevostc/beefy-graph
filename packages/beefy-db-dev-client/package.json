@@ -1,0 +1,29 @@
+{
+    "name": "@beefy/db-dev-client",
+    "version": "0.0.1",
+    "description": "Beefy DB Connector",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "codegen": "drizzle-kit pull && mv drizzle/schema.ts src/lib/generated/schema.ts && mv drizzle/relations.ts src/lib/generated/relations.ts && rimraf drizzle",
+        "test:ts": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@beefy/logger": "workspace:*",
+        "bignumber.js": "catalog:",
+        "drizzle-kit": "^0.31.6",
+        "drizzle-orm": "^0.44.7",
+        "pg": "^8.16.3",
+        "pg-connection-string": "^2.9.1",
+        "remeda": "catalog:"
+    },
+    "devDependencies": {
+        "@types/bun": "catalog:",
+        "@types/pg": "^8.15.6",
+        "bun": "catalog:",
+        "rimraf": "^6.0.1",
+        "typescript": "catalog:"
+    }
+}

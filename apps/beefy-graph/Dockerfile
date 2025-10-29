@@ -6,9 +6,9 @@ WORKDIR /app
 
 # Copy root package files for workspace setup
 COPY package.json bun.lockb* ./
-
-# Copy the specific app package.json
 COPY apps/beefy-graph/package.json ./apps/beefy-graph/
+COPY packages/beefy-db-dev-client/package.json ./packages/beefy-db-dev-client/
+COPY packages/beefy-logger/package.json ./packages/beefy-logger/
 
 # Install dependencies (this will install workspace dependencies)
 RUN bun install --frozen-lockfile

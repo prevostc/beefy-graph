@@ -10,7 +10,9 @@ import { maxDirectivesPlugin } from '@escape.tech/graphql-armor-max-directives';
 import { useResponseCache } from '@graphql-yoga/plugin-response-cache'
 import { useRateLimiter } from '@envelop/rate-limiter'
 import { useMaskedErrors, useErrorHandler } from '@envelop/core'
-import { createContext, ServerContext, UserContext } from './lib/context'
+import { createContext, type ServerContext, type UserContext } from './lib/context'
+
+const { serverContext } = await createContext()
 
 const yoga = createYoga<ServerContext, UserContext>({
     schema,
@@ -45,7 +47,7 @@ const yoga = createYoga<ServerContext, UserContext>({
         }),
         useMaskedErrors()
     ],
-    context: createContext,
+    context: serverContext,
 });
 
 

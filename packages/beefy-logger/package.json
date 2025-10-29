@@ -1,0 +1,20 @@
+{
+    "name": "@beefy/logger",
+    "version": "0.0.1",
+    "description": "Beefy Logger",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "private": true,
+    "scripts": {
+        "test:ts": "tsc --noEmit"
+    },
+    "dependencies": {
+        "pino": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "bun": "catalog:",
+        "@types/bun": "catalog:",
+        "typescript": "catalog:"
+    }
+}
