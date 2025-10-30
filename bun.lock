@@ -28,6 +28,7 @@
         "@graphql-tools/schema": "^10.0.25",
         "@graphql-yoga/plugin-response-cache": "^3.18.0",
         "bun": "catalog:",
+        "dataloader": "^2.2.3",
         "graphql": "^16.11.0",
         "graphql-scalars": "^1.25.0",
         "graphql-yoga": "^5.16.0",

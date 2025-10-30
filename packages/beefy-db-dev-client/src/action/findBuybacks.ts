@@ -22,6 +22,7 @@ export const createFindBuybacksAction = ({ db }: { db: DatabaseClient }) => {
                 lte(bifiBuyback.txnTimestamp, before.toISOString()),
             ),
         });
+
         return {
             buybacks: R.pipe(buybacks, R.map(b => ({
                 date: new Date(Number(b.txnTimestamp) * 1000),
